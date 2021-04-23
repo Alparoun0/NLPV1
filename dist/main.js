@@ -87,7 +87,24 @@ function handleSubmit(event) {
         document.getElementById('results').innerHTML = res.message
     })
 }
+const formdata = new FormData();
+formdata.append("key", "1f36e4f22f8e00b893e4260d4587f32a");
+formdata.append("txt", "YOUR TEXT HERE");
+formdata.append("lang", "TEXT LANGUAGE HERE");  // 2-letter code, like en es fr ...
 
+const requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+const response = fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
+  .then(response => ({
+    status: response.status, 
+    body: response.json()
+  }))
+  .then(({ status, body }) => console.log(status, body))
+  .catch(error => console.log('error', error));
 
 
 

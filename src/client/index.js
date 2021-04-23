@@ -5,7 +5,9 @@ import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 import './styles/resets.scss'
-
+const dotenv = require('dotenv');
+dotenv.config();
+console.log(`Your API key is ${process.env.API_KEY}`);
 
 console.log(checkForName);
 
