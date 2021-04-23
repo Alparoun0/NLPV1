@@ -4,30 +4,22 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let formText = document.getElementById('name').value
     Client.checkForName(formText)
-
+  const url= document.getElementById('results').innerHTML
     console.log("::: Form Submitted :::")
-    fetch('http://localhost:8081/test')
+    fetch('http://localhost:8081/test1',{
+        method: 'post',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        } ,
+        body :JSON.stringify({res : url })
+         
+    })
     .then(res => res.json())
-    .then(function(res) {
+    .then((res) => {
+        console.log(res)
         document.getElementById('results').innerHTML = res.message
     })
 }
-const formdata = new FormData();
-formdata.append("key", "1f36e4f22f8e00b893e4260d4587f32a");
-formdata.append("txt", "YOUR TEXT HERE");
-formdata.append("lang", "TEXT LANGUAGE HERE");  // 2-letter code, like en es fr ...
 
-const requestOptions = {
-  method: 'POST',
-  body: formdata,
-  redirect: 'follow'
-};
-
-const response = fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
-  .then(response => ({
-    status: response.status, 
-    body: response.json()
-  }))
-  .then(({ status, body }) => console.log(status, body))
-  .catch(error => console.log('error', error));
 export { handleSubmit }

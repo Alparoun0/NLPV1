@@ -1,16 +1,19 @@
+
+ 
 function checkForName(inputText) {
     console.log("::: Running checkForName :::", inputText);
-    let names = [
-        "Picard",
-        "Janeway",
-        "Kirk",
-        "Archer",
-        "Georgiou"
-    ]
-
-    if(names.includes(inputText)) {
-        alert("Welcome, Captain!")
+     
+    var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if(!regex .test(inputText)) {
+      alert("Please enter valid URL.");
+      return false;
+    } else {
+     
+        alert("Ple .")
+      return true;
     }
+     
 }
-
 export { checkForName }
+
+ 
