@@ -20,13 +20,13 @@ app.use(cors())
 
 
  
-app.post('/test2' ,  (req, res) => {
+app.post('/apireq' ,  (req, res) => {
  
     axios.post(`http://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&url=${req.body.formText}&lang=en`).then((response) => {
         res.send(response.data);
  
-    console.log(response.data);
-		console.log(response.data);
+    //console.log(response.data);
+		//console.log(response.data);
 	});
   })
   
@@ -35,13 +35,7 @@ app.post('/test2' ,  (req, res) => {
       
  
  
-app.get('/test',  (req, rmodes) => {
  
- 
-    res.message
-    res.send(mockAPIResponse)
-     
-})
 
 app.use('/',  (req, res, next) => {
      //res.sendFile('dist/index.html')

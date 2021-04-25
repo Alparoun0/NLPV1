@@ -11,7 +11,7 @@ function handleSubmit(event) {
     //console.log(formText)
     if (checkurl(formText)) {
 
-    fetch('http://localhost:8081/test2',{
+    fetch('http://localhost:8081/apireq',{
         method: 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
