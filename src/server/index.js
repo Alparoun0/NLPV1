@@ -1,9 +1,9 @@
-var path = require('path')
-
- const cors = require("cors");
+const path = require('path')
+const cors = require("cors");
+ 
+const dotenv = require('dotenv').config();
  
  
-
 const express = require('express')
 const axios = require('axios');
 const app = express()
@@ -16,15 +16,15 @@ const app = express()
 app.use(express.static('dist'))
 app.use(express.json())
 app.use(cors())
-console.log(__dirname)
+ 
 
 
  
 app.post('/test2' ,  (req, res) => {
-
-    axios.post(`http://api.meaningcloud.com/sentiment-2.1?key=1f36e4f22f8e00b893e4260d4587f32a&url=${req.body.formText}&lang=en`).then((response) => {
+ 
+    axios.post(`http://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&url=${req.body.formText}&lang=en`).then((response) => {
         res.send(response.data);
-
+ 
     console.log(response.data);
 		console.log(response.data);
 	});
