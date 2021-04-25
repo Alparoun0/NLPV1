@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node src/server/index.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack serve --config webpack.dev.js --open "
@@ -20,9 +20,12 @@
     "express": "^4.17.1",
     "follow-redirects": "^1.13.3",
     "form-data": "^2.3.3",
+    "jest": "^26.6.3",
     "meaning-cloud": "^1.1.10",
     "node": "^15.14.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "terser-webpack-plugin": "^5.1.1",
+    "workbox-webpack-plugin": "^6.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",

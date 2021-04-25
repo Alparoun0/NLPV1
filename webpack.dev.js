@@ -3,7 +3,9 @@ const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtract = require('mini-css-extract-plugin')
-  
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
 module.exports = {
 
     output: {
@@ -48,9 +50,13 @@ module.exports = {
             template: "./src/client/views/index.html",
             filename: "index.html"
         }),
-        new MiniCssExtract()
+        new MiniCssExtract({ filename: "[name].css" }),
+        new WorkboxPlugin.GenerateSW()
 
          
-    ]
+    ],
+    optimization: {
+        minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    }
 }
 
