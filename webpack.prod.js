@@ -11,8 +11,7 @@ module.exports = {
         library: 'Client'
     },
     entry: './src/client/index.js',
-    mode: 'development',
-    devtool: 'source-map',
+    mode: 'production',
     stats: 'verbose',
     module: {
         rules: [

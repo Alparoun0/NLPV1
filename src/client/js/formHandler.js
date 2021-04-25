@@ -4,22 +4,27 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let formText = document.getElementById('name').value
     Client.checkForName(formText)
-  const url= document.getElementById('results').innerHTML
+   
     console.log("::: Form Submitted :::")
-    fetch('http://localhost:8081/test1',{
+    console.log(formText)
+    fetch('http://localhost:8081/test2',{
         method: 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
         } ,
-        body :JSON.stringify({res : url })
+        body :JSON.stringify({ formText: formText })
          
     })
     .then(res => res.json())
     .then((res) => {
         console.log(res)
-        document.getElementById('results').innerHTML = res.message
-    })
+        document.getElementById('text').textContent = res.text
+        document.getElementById('agreement').textContent = res.agreement
+        document.getElementById('confidence').textContent = res.confidence
+        document.getElementById('score_tag').textContent = res.score_tag
+        document.getElementById('subjectivity').textContent = res.subjectivity
+        document.getElementById('irony').textContent = res.irony    })
 }
 
 export { handleSubmit }
