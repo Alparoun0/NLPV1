@@ -18,6 +18,7 @@ npm install
 const API_KEY = 'ENTER YOUR API';
  
 npm run build-prod
+
 npm run start  
 
 #### To Test
