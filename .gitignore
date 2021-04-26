@@ -1,2 +1,5 @@
 # fine to comment here
 /node_modules
+/dist
+/draft
+

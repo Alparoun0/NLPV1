@@ -1,22 +1,21 @@
+
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtract = require('mini-css-extract-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+  
 
-module.exports = {
-
+ module.exports = {
+    entry: './src/client/index.js',
+    mode: 'development',
+    devtool: 'source-map',
+    stats: 'verbose',
     output: {
         libraryTarget: 'var',
         library: 'Client'
     },
-    entry: './src/server/index.js',
-    mode: 'development',
-    devtool: 'source-map',
-    stats: 'verbose',
     module: {
         rules: [
             {
@@ -25,19 +24,24 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
                 use: [
-                  // Creates `style` nodes from JS strings
-                  MiniCssExtract.loader,
-                  // Translates CSS into CommonJS
-                  "css-loader",
-                  // Compiles Sass to CSS
-                  "sass-loader",
+                    {
+                        loader: 'file-loader',
+                    },
                 ]
             }
         ]
     },
     plugins: [
+        new HtmlWebPackPlugin({
+            template: "./src/client/views/index.html",
+            filename: "./index.html",
+        }),
         new CleanWebpackPlugin({
             // Simulate the removal of files
             dry: true,
@@ -47,17 +51,6 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
-        new HtmlWebPackPlugin({
-            template: "./src/client/views/index.html",
-            filename: "index.html"
-        }),
-        new MiniCssExtract({ filename: "[name].css" }),
         new WorkboxPlugin.GenerateSW()
-
-         
-    ],
-    optimization: {
-        minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
-    }
+    ]
 }
-
