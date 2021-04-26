@@ -51,10 +51,10 @@ module.exports = {
             filename: "index.html"
         }),
         new MiniCssExtract({ filename: "[name].css" }),
+
+
         new WorkboxPlugin.GenerateSW()
 
-
-         
     ],
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
